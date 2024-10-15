@@ -39,32 +39,38 @@ echo "$backupFileName"
 # To make things easier, we will define some useful variables...
 
 # [TASK 5]
-origAbsPath=``
+origAbsPath=`pwd`
+echo "$origAbsPath"
 
 # [TASK 6]
-cd # <-
-destDirAbsPath=``
+cd $destinationDirectory
+destDirAbsPath=`pwd`
+echo "$destDirAbsPath"
 
 # [TASK 7]
-cd # <-
-cd # <-
+cd $origAbsPath
+cd $targetDirectory
 
 # [TASK 8]
-yesterdayTS=
+yesterdayTS=$(($currentTS - 86400))
+echo "$yesterdayTS"
 
 declare -a toBackup
 
-for file in $() # [TASK 9]
+for file in $(ls) # [TASK 9]
 do
   # [TASK 10]
-  if (())
+  lastModifiedDate=$(date -r $file +%s)
+
+  if [ "$lastModifiedDate" -gt "$yesterdayTS" ]
   then
     # [TASK 11]
+    toBackup+=($file)
   fi
 done
 
 # [TASK 12]
-
+tar -czvf $backupFileName ${toBackup[@]}
 # [TASK 13]
-
+mv $backupFileName $destDirAbsPath
 # Congratulations! You completed the final project for this course!
