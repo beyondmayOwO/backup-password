@@ -20,14 +20,16 @@ targetDirectory=$1
 destinationDirectory=$2
 
 # [TASK 2]
-echo ""
-echo ""
+echo "This is $targetDirectory"
+echo "This is $destinationDirectory"
 
 # [TASK 3]
-currentTS=``
+currentTS=`date +%s`
+echo "$currentTS"
 
 # [TASK 4]
-backupFileName=""
+backupFileName="backup-$currentTS.tar.gz"
+echo "$backupFileName"
 
 # We're going to:
   # 1: Go into the target directory
